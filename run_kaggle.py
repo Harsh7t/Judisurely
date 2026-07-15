@@ -11,6 +11,11 @@ os.environ.pop("NYAY_MITRA_DEV", None)
 
 
 def main():
+    # Must run before Gradio import (HfFolder removed in new huggingface_hub)
+    from utils.hf_compat import patch_huggingface_hub_for_gradio
+
+    patch_huggingface_hub_for_gradio()
+
     from utils.gemma_client import find_model_path, load_gemma
     from utils.rag import load_knowledge_base
     from utils.gradio_app import launch

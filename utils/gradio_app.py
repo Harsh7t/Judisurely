@@ -1,5 +1,9 @@
 """Gradio web UI for Nyay Mitra."""
 
+from utils.hf_compat import patch_huggingface_hub_for_gradio
+
+patch_huggingface_hub_for_gradio()
+
 import gradio as gr
 
 from utils.pdf_generator import generate_pdf
