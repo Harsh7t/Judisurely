@@ -22,19 +22,31 @@ def _get_file_path(file):
     return str(file)
 
 
-def run_analysis(image, text, file, language, template_key):
+def run_analysis(image, text, file, language, template_key, progress=gr.Progress()):
     """Gradio handler for analyze button."""
-    file_path = _get_file_path(file)
-    result = analyze_notice(
-        image=image,
-        text=text or "",
-        file_path=file_path,
-        language=language,
-        template_key=template_key,
-    )
+    def _cb(value, desc):
+        # Gradio Progress: (fraction, desc) via call
+        try:
+            progress(value, desc=desc)
+        except Exception:
+            pass
+
+    try:
+        file_path = _get_file_path(file)
+        result = analyze_notice(
+            image=image,
+            text=text or "",
+            file_path=file_path,
+            language=language,
+            template_key=template_key,
+            progress=_cb,
+        )
+    except Exception as e:
+        err = f"**Error:** {type(e).__name__}: {e}\n\nCheck the Kaggle notebook logs for details."
+        return err, err, err, err, "", None
 
     if "error" in result:
-        err = result["error"]
+        err = f"**{result['error']}**"
         return err, err, err, err, "", None
 
     return (
@@ -65,6 +77,9 @@ def build_demo():
 *Upload a legal notice → Understand your rights → Get your action plan → Download your draft*
 
 **Powered by Gemma 4** | Track 1: AI for Legal Assistance | Build with Gemma – AIMS DTU
+
+> **Tip:** Pasting notice text is fastest. Image upload uses Gemma multimodal (or OCR if available).
+> Full analysis takes ~2–4 minutes on T4 (3 Gemma calls). Watch the progress status.
 """
         )
         gr.Markdown(DISCLAIMER)
@@ -77,7 +92,7 @@ def build_demo():
                     file_types=[".pdf", ".txt", ".png", ".jpg", ".jpeg"],
                 )
                 input_text = gr.Textbox(
-                    label="Or paste notice text",
+                    label="Or paste notice text (recommended)",
                     lines=8,
                     placeholder="Paste the full text of your legal notice here...",
                 )
@@ -134,9 +149,16 @@ def build_demo():
 
 
 def launch(share: bool = False):
-    """Launch Gradio app."""
+    """Launch Gradio app with queue (required for long Gemma jobs + progress)."""
     demo = build_demo()
-    demo.launch(share=share, debug=False, show_api=False)
+    # Queue keeps long GPU jobs alive and enables Progress updates
+    demo.queue(default_concurrency_limit=1)
+    demo.launch(
+        share=share,
+        debug=True,
+        show_api=False,
+        max_threads=4,
+    )
 
 
 if __name__ == "__main__":

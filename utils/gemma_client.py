@@ -199,14 +199,20 @@ def _get_device(model) -> Any:
         return torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
-def _build_messages(system_prompt: str, user_input: str) -> list:
-    # Gemma chat templates often expect user/model roles; fold system into user
-    return [
-        {
-            "role": "user",
-            "content": f"{system_prompt}\n\n{user_input}",
-        }
-    ]
+def _build_messages(system_prompt: str, user_input: str, image=None) -> list:
+    """Build chat messages. With image, use multimodal content list for Gemma 4."""
+    text = f"{system_prompt}\n\n{user_input}"
+    if image is not None:
+        return [
+            {
+                "role": "user",
+                "content": [
+                    {"type": "image", "image": image},
+                    {"type": "text", "text": text},
+                ],
+            }
+        ]
+    return [{"role": "user", "content": text}]
 
 
 def _format_prompt_fallback(system_prompt: str, user_input: str) -> str:
@@ -216,14 +222,37 @@ def _format_prompt_fallback(system_prompt: str, user_input: str) -> str:
     )
 
 
+def _move_inputs_to_device(out, device) -> tuple[Any, int]:
+    if isinstance(out, dict) or hasattr(out, "keys"):
+        inputs = {k: v.to(device) if hasattr(v, "to") else v for k, v in dict(out).items()}
+        return inputs, int(inputs["input_ids"].shape[-1])
+    inputs = out.to(device)
+    return inputs, int(inputs.shape[-1])
+
+
+def _eos_pad_ids(tok) -> dict:
+    kwargs = {}
+    eos = getattr(tok, "eos_token_id", None)
+    pad = getattr(tok, "pad_token_id", None)
+    if eos is not None:
+        kwargs["eos_token_id"] = eos
+    if pad is not None:
+        kwargs["pad_token_id"] = pad
+    elif eos is not None:
+        kwargs["pad_token_id"] = eos
+    return kwargs
+
+
 def call_gemma(
     system_prompt: str,
     user_input: str,
-    max_tokens: int = 1536,
+    max_tokens: int = 768,
     temperature: float = 0.3,
+    image=None,
 ) -> str:
-    """Run a single Gemma generation call."""
+    """Run a single Gemma generation call. Optional PIL image for multimodal extract."""
     global _model, _processor, _tokenizer
+    import time
 
     if is_dev_mode():
         return _mock_response(system_prompt, user_input)
@@ -242,7 +271,7 @@ def call_gemma(
     proc = _processor
     tok = _tokenizer or getattr(proc, "tokenizer", None) or proc
     device = _get_device(model)
-    messages = _build_messages(system_prompt, user_input)
+    messages = _build_messages(system_prompt, user_input, image=image)
 
     # Ensure template exists before calling
     path = find_model_path() or ""
@@ -252,8 +281,10 @@ def call_gemma(
 
     inputs = None
     input_len = 0
+    t0 = time.time()
+    print(f"[gemma] starting generate (image={image is not None}, max_new={max_tokens})...")
 
-    # Strategy 1: processor.apply_chat_template with return_dict (Gemma 4 official)
+    # Strategy 1: processor.apply_chat_template (Gemma 4 multimodal + text)
     try:
         out = proc.apply_chat_template(
             messages,
@@ -263,44 +294,36 @@ def call_gemma(
             add_generation_prompt=True,
             enable_thinking=False,
         )
-        if isinstance(out, dict) or hasattr(out, "keys"):
-            inputs = {k: v.to(device) if hasattr(v, "to") else v for k, v in dict(out).items()}
-            input_len = inputs["input_ids"].shape[-1]
-        else:
-            inputs = out.to(device)
-            input_len = inputs.shape[-1]
+        inputs, input_len = _move_inputs_to_device(out, device)
     except Exception as e1:
         print(f"apply_chat_template via processor failed: {e1}")
-        # Strategy 2: tokenizer.apply_chat_template
+        # Drop image and retry text-only if multimodal template failed
+        text_messages = _build_messages(system_prompt, user_input, image=None)
         try:
             out = tok.apply_chat_template(
-                messages,
+                text_messages,
                 tokenize=True,
                 return_dict=True,
                 return_tensors="pt",
                 add_generation_prompt=True,
             )
-            if isinstance(out, dict) or hasattr(out, "keys"):
-                inputs = {k: v.to(device) if hasattr(v, "to") else v for k, v in dict(out).items()}
-                input_len = inputs["input_ids"].shape[-1]
-            else:
-                inputs = out.to(device)
-                input_len = inputs.shape[-1]
+            inputs, input_len = _move_inputs_to_device(out, device)
         except Exception as e2:
             print(f"tokenizer chat template failed: {e2}; using string fallback")
-            # Strategy 3: manual prompt + tokenize
             prompt = _format_prompt_fallback(system_prompt, user_input)
             encoded = tok(prompt, return_tensors="pt")
             inputs = {k: v.to(device) for k, v in encoded.items()}
-            input_len = inputs["input_ids"].shape[-1]
+            input_len = int(inputs["input_ids"].shape[-1])
 
+    # Cap tokens so share links don't sit past ~5 min on 3 calls
+    max_tokens = min(int(max_tokens), 1024)
     gen_kwargs = {
         "max_new_tokens": max_tokens,
-        "temperature": temperature if temperature > 0 else None,
         "do_sample": temperature > 0,
+        **_eos_pad_ids(tok),
     }
-    # Clean None values
-    gen_kwargs = {k: v for k, v in gen_kwargs.items() if v is not None}
+    if temperature > 0:
+        gen_kwargs["temperature"] = temperature
 
     with torch.inference_mode():
         if isinstance(inputs, dict):
@@ -316,11 +339,12 @@ def call_gemma(
 
     # If thinking tags remain, keep content after model turn / strip think blocks
     if "<|channel|>" in text or "<|think|>" in text:
-        # Prefer final answer after think block if present
         for marker in ("</think>", "<end_of_thought>", "<|channel|>final"):
             if marker in text:
                 text = text.split(marker)[-1]
                 break
+
+    print(f"[gemma] done in {time.time() - t0:.1f}s ({len(text)} chars)")
     return text.strip()
 
 
