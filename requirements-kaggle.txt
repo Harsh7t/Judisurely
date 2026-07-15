@@ -1,14 +1,18 @@
-# Kaggle GPU notebook — install AFTER cloning repo
-# Note: pip may show dependency warnings vs Kaggle pre-installed packages — safe to ignore.
-gradio==4.44.1
-gradio-client==1.3.0
-huggingface_hub>=0.23.0,<0.26.0
-pydantic>=2.0,<2.11
+# Kaggle install — AFTER cloning repo
+# Install in TWO steps on Kaggle to avoid Gradio vs transformers hub conflict:
+#   1) pip install -r requirements-kaggle.txt
+#   2) then run the Gradio --no-deps line from KAGGLE_SETUP.md / notebook
+#
+# Core AI + PDF + RAG
 transformers>=4.51.0
-torch>=2.1.0
 accelerate>=0.34.0
 bitsandbytes>=0.43.0
+torch>=2.1.0
 scikit-learn>=1.3.0
 fpdf2>=2.7.0
 Pillow>=10.0.0
 pymupdf>=1.24.0
+pydantic>=2.0,<2.11
+
+# Gradio is installed separately with --no-deps (see notebook Cell 2)
+# because Gradio 4.44 wants huggingface_hub<0.26 but transformers>=4.51 needs newer hub.

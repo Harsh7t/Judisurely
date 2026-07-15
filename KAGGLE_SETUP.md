@@ -11,62 +11,85 @@
 2. **Settings** (right sidebar):
    - Accelerator: **GPU T4 x2**
    - Internet: **ON**
-   - Persistence: Files only
+3. **Run → Restart Session** before a clean run
 
 ## Step 2 — Add Gemma Model
 1. **Add Input** → **Models**
 2. Search: `gemma-4`
-3. Select: **gemma-4-e2b-it** (Transformers, V1)
+3. Select: **gemma-4-e2b-it** (or **gemma-4-e2b**) — Transformers
 4. Click **Add**
+5. Remove any **gemma-2** models
 
-## Step 3 — Run notebook cells (copy from `nyay_mitra.ipynb`)
+## Step 3 — Run these cells in order
 
-### Cell 1 — Clone repo FIRST (requirements file is inside the repo)
+### Cell 1 — Clone (always `chdir` to `/kaggle/working` first)
 ```python
-!git clone https://github.com/Harsh7t/Judisurely.git
-%cd Judisurely
-import sys; sys.path.insert(0, ".")
-print("Ready!")
+import os, shutil, sys
+
+os.chdir("/kaggle/working")
+if os.path.exists("/kaggle/working/Judisurely"):
+    shutil.rmtree("/kaggle/working/Judisurely")
+
+!git clone https://github.com/Harsh7t/Judisurely.git /kaggle/working/Judisurely
+
+os.chdir("/kaggle/working/Judisurely")
+sys.path = [p for p in sys.path if "Judisurely" not in p]
+sys.path.insert(0, "/kaggle/working/Judisurely")
+
+assert os.path.isfile("data/legal_kb.json")
+print("Ready:", os.getcwd())
 ```
 
-### Cell 2 — Install dependencies
+### Cell 2 — Install (two-step to avoid pip conflict)
 ```python
-# Warnings about pydantic/websockets vs Kaggle pre-installed packages are OK — ignore them
 !pip install -q -r requirements-kaggle.txt
+!pip install -q "gradio==4.44.1" "gradio-client==1.3.0" --no-deps
+!pip install -q aiofiles ffmpy python-multipart httpx orjson semantic-version toml typer "websockets==12.0" fastapi uvicorn starlette markupsafe packaging anyio sniffio h11 jinja2 huggingface-hub
+print("Install done")
 ```
-**Do NOT run `pip install -U transformers` separately** — it breaks Gradio's huggingface_hub pin.
+
+Ignore other Kaggle package warnings (`google-adk`, etc.).
 
 ### Cell 3 — Verify Gemma path
 ```python
-import glob
+import glob, os
+os.chdir("/kaggle/working/Judisurely")
 configs = glob.glob("/kaggle/input/models/**/config.json", recursive=True)
-assert configs, "Add Gemma 4 e2b-it model!"
-print("Gemma:", configs[0].replace("/config.json", ""))
+for c in configs:
+    print(c)
+gemma_path = configs[0].replace("/config.json", "")
+assert "gemma-4" in gemma_path, f"Wrong model: {gemma_path}"
+print("✅ Gemma path:", gemma_path)
 ```
 
-### Cell 4 — Quick test (optional, ~2 min)
+### Cell 4 — Quick test (~3–5 min)
 ```python
-from utils.pipeline import analyze_notice
+import os, sys
+os.chdir("/kaggle/working/Judisurely")
+sys.path.insert(0, "/kaggle/working/Judisurely")
+
 from utils.gemma_client import load_gemma
 from utils.rag import load_knowledge_base
+from utils.pipeline import analyze_notice
 
 load_knowledge_base()
 load_gemma()
 sample = open("data/sample_notices/rent_notice_delhi.txt").read()
 r = analyze_notice(text=sample, language="English")
-print(r["reasoning"]["urgency_level"])
-print(r["reasoning"]["plain_language_summary"][:200])
+print(r["reasoning"]["plain_language_summary"])
 ```
 
-### Cell 5 — Launch demo (submission URL)
+### Cell 5 — Launch demo
 ```python
+import os
+os.chdir("/kaggle/working/Judisurely")
 !python run_kaggle.py
 ```
-**Copy the `https://xxxxx.gradio.live` URL** — this is your live demo link.
+**Copy the `https://xxxxx.gradio.live` URL** for submission.
 
 ## Step 4 — Save for judges
 1. **Save Version** → **Save & Run All (Commit)**
-2. Set visibility: **Public**
+2. Visibility: **Public**
 3. Attach notebook URL + Gradio URL to writeup
 
 ---
@@ -75,16 +98,9 @@ print(r["reasoning"]["plain_language_summary"][:200])
 
 | Problem | Fix |
 |---------|-----|
-| Model not found | Add Input → Models → gemma-4-e2b-it |
-| CUDA OOM | Use e2b-it (not 12b), 4-bit already enabled |
-| Mock/fake output | Do NOT set NYAY_MITRA_DEV on Kaggle |
-| JSON parse error | Gemma sometimes wraps JSON in ``` — pipeline has fallback |
-| Gradio URL expired | Re-run cell 5 before judges review (72h limit) |
-
----
-
-## What judges see with real Gemma
-- Notice-specific extraction (not canned mock)
-- Grounded citations from legal_kb.json
-- Custom draft letter with real names/dates
-- Thinking trace from actual Gemma reasoning
+| `ResolutionImpossible` (huggingface_hub) | Use Cell 2 two-step install (`--no-deps` for Gradio) |
+| `Judisurely/Judisurely/...` path | Restart Session, then Cell 1 (never delete while cwd is inside that folder) |
+| `legal_kb.json` not found | Confirm `os.getcwd()` is `/kaggle/working/Judisurely` and `data/legal_kb.json` exists |
+| Wrong model (gemma-2) | Remove it; add gemma-4-e2b / e2b-it |
+| CUDA OOM | Use e2b only (not 12b/26b) |
+| Shell getcwd / rmtree error | `os.chdir("/kaggle/working")` then Restart Session |
