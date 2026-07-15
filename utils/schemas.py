@@ -67,4 +67,6 @@ TEMPLATE_NAMES = {
     "legal_reply": "Legal Reply to Notice",
     "consumer_complaint": "Consumer Complaint Letter",
     "rti_application": "RTI Application",
+    "rti_first_appeal": "RTI First Appeal",
+    "labour_termination_reply": "Reply to Termination Letter",
 }

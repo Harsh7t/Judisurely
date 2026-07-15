@@ -7,8 +7,21 @@
     "applicable_to": "tenant",
     "typical_deadline_days": 30,
     "authority_to_approach": "Rent Controller, Delhi",
-    "documents_needed": ["Rent agreement", "Notice received", "Proof of tenancy", "Identity proof"],
-    "keywords": ["rent", "eviction", "landlord", "vacate", "own use", "delhi", "tenant"],
+    "documents_needed": [
+      "Rent agreement",
+      "Notice received",
+      "Proof of tenancy",
+      "Identity proof"
+    ],
+    "keywords": [
+      "rent",
+      "eviction",
+      "landlord",
+      "vacate",
+      "own use",
+      "delhi",
+      "tenant"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -19,8 +32,19 @@
     "applicable_to": "tenant",
     "typical_deadline_days": 15,
     "authority_to_approach": "Rent Controller, Delhi",
-    "documents_needed": ["Rent receipts", "Bank statements", "Notice copy", "Rent agreement"],
-    "keywords": ["rent", "arrears", "non-payment", "eviction", "delhi"],
+    "documents_needed": [
+      "Rent receipts",
+      "Bank statements",
+      "Notice copy",
+      "Rent agreement"
+    ],
+    "keywords": [
+      "rent",
+      "arrears",
+      "non-payment",
+      "eviction",
+      "delhi"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -31,8 +55,18 @@
     "applicable_to": "tenant",
     "typical_deadline_days": 30,
     "authority_to_approach": "Rent Controller, Delhi",
-    "documents_needed": ["Rent agreement", "Notice", "Evidence of permitted use"],
-    "keywords": ["sublet", "unauthorized use", "eviction", "tenant", "delhi"],
+    "documents_needed": [
+      "Rent agreement",
+      "Notice",
+      "Evidence of permitted use"
+    ],
+    "keywords": [
+      "sublet",
+      "unauthorized use",
+      "eviction",
+      "tenant",
+      "delhi"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -43,8 +77,16 @@
     "applicable_to": "tenant",
     "typical_deadline_days": null,
     "authority_to_approach": "Rent Controller, Delhi",
-    "documents_needed": ["Rent agreement", "All notices received"],
-    "keywords": ["tenant protection", "eviction grounds", "due process", "delhi"],
+    "documents_needed": [
+      "Rent agreement",
+      "All notices received"
+    ],
+    "keywords": [
+      "tenant protection",
+      "eviction grounds",
+      "due process",
+      "delhi"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -55,8 +97,18 @@
     "applicable_to": "tenant",
     "typical_deadline_days": 30,
     "authority_to_approach": "Rent Controller, Delhi",
-    "documents_needed": ["Rent agreement", "Rent increase notice", "Previous rent receipts"],
-    "keywords": ["rent increase", "landlord", "tenant", "delhi", "controlled rent"],
+    "documents_needed": [
+      "Rent agreement",
+      "Rent increase notice",
+      "Previous rent receipts"
+    ],
+    "keywords": [
+      "rent increase",
+      "landlord",
+      "tenant",
+      "delhi",
+      "controlled rent"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -67,8 +119,18 @@
     "applicable_to": "tenant",
     "typical_deadline_days": 15,
     "authority_to_approach": "Rent Controller or local legal aid cell",
-    "documents_needed": ["Written reply", "Notice copy", "Proof of delivery"],
-    "keywords": ["notice", "reply", "rent dispute", "written response", "delhi"],
+    "documents_needed": [
+      "Written reply",
+      "Notice copy",
+      "Proof of delivery"
+    ],
+    "keywords": [
+      "notice",
+      "reply",
+      "rent dispute",
+      "written response",
+      "delhi"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -79,8 +141,19 @@
     "applicable_to": "accused_drawer",
     "typical_deadline_days": 15,
     "authority_to_approach": "Magistrate Court (after notice period)",
-    "documents_needed": ["Cheque copy", "Bank return memo", "Legal demand notice", "Proof of delivery"],
-    "keywords": ["cheque bounce", "section 138", "dishonour", "demand notice", "ni act"],
+    "documents_needed": [
+      "Cheque copy",
+      "Bank return memo",
+      "Legal demand notice",
+      "Proof of delivery"
+    ],
+    "keywords": [
+      "cheque bounce",
+      "section 138",
+      "dishonour",
+      "demand notice",
+      "ni act"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -91,8 +164,19 @@
     "applicable_to": "accused_drawer",
     "typical_deadline_days": 15,
     "authority_to_approach": "Lawyer / Magistrate Court",
-    "documents_needed": ["Legal notice received", "Cheque", "Bank memo", "Payment proof if paid"],
-    "keywords": ["legal notice", "15 days", "cheque bounce", "payment demand", "138"],
+    "documents_needed": [
+      "Legal notice received",
+      "Cheque",
+      "Bank memo",
+      "Payment proof if paid"
+    ],
+    "keywords": [
+      "legal notice",
+      "15 days",
+      "cheque bounce",
+      "payment demand",
+      "138"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -103,8 +187,19 @@
     "applicable_to": "accused_drawer",
     "typical_deadline_days": 30,
     "authority_to_approach": "Metropolitan Magistrate / Judicial Magistrate",
-    "documents_needed": ["Complaint copy", "Legal notice", "Proof of service", "Cheque", "Bank memo"],
-    "keywords": ["criminal complaint", "magistrate", "cheque bounce", "138"],
+    "documents_needed": [
+      "Complaint copy",
+      "Legal notice",
+      "Proof of service",
+      "Cheque",
+      "Bank memo"
+    ],
+    "keywords": [
+      "criminal complaint",
+      "magistrate",
+      "cheque bounce",
+      "138"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -115,8 +210,18 @@
     "applicable_to": "company_director",
     "typical_deadline_days": 15,
     "authority_to_approach": "Lawyer / Magistrate Court",
-    "documents_needed": ["Company records", "Cheque", "Notice", "Board resolutions if any"],
-    "keywords": ["company cheque", "director liability", "138", "corporate"],
+    "documents_needed": [
+      "Company records",
+      "Cheque",
+      "Notice",
+      "Board resolutions if any"
+    ],
+    "keywords": [
+      "company cheque",
+      "director liability",
+      "138",
+      "corporate"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -127,8 +232,17 @@
     "applicable_to": "accused_drawer",
     "typical_deadline_days": 30,
     "authority_to_approach": "Magistrate Court",
-    "documents_needed": ["Complaint", "Legal notice trail", "Cheque documents"],
-    "keywords": ["complaint", "cognizance", "time limit", "138"],
+    "documents_needed": [
+      "Complaint",
+      "Legal notice trail",
+      "Cheque documents"
+    ],
+    "keywords": [
+      "complaint",
+      "cognizance",
+      "time limit",
+      "138"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -139,8 +253,19 @@
     "applicable_to": "accused_drawer",
     "typical_deadline_days": 15,
     "authority_to_approach": "Lawyer",
-    "documents_needed": ["Written reply", "Payment proof", "Correspondence", "Bank records"],
-    "keywords": ["defence", "reply", "cheque bounce", "dispute", "138"],
+    "documents_needed": [
+      "Written reply",
+      "Payment proof",
+      "Correspondence",
+      "Bank records"
+    ],
+    "keywords": [
+      "defence",
+      "reply",
+      "cheque bounce",
+      "dispute",
+      "138"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -151,8 +276,18 @@
     "applicable_to": "consumer",
     "typical_deadline_days": null,
     "authority_to_approach": "District Consumer Commission",
-    "documents_needed": ["Invoice", "Receipt", "Product photos", "Communication with seller"],
-    "keywords": ["consumer", "defective product", "deficient service", "rights"],
+    "documents_needed": [
+      "Invoice",
+      "Receipt",
+      "Product photos",
+      "Communication with seller"
+    ],
+    "keywords": [
+      "consumer",
+      "defective product",
+      "deficient service",
+      "rights"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -163,8 +298,19 @@
     "applicable_to": "consumer",
     "typical_deadline_days": 730,
     "authority_to_approach": "District Consumer Commission",
-    "documents_needed": ["Complaint format", "Invoice", "Evidence", "ID proof", "Affidavit"],
-    "keywords": ["consumer complaint", "district commission", "filing", "jurisdiction"],
+    "documents_needed": [
+      "Complaint format",
+      "Invoice",
+      "Evidence",
+      "ID proof",
+      "Affidavit"
+    ],
+    "keywords": [
+      "consumer complaint",
+      "district commission",
+      "filing",
+      "jurisdiction"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -175,8 +321,17 @@
     "applicable_to": "consumer",
     "typical_deadline_days": null,
     "authority_to_approach": "District Consumer Commission",
-    "documents_needed": ["Complaint", "Supporting evidence", "Relief sought in writing"],
-    "keywords": ["refund", "replacement", "compensation", "consumer relief"],
+    "documents_needed": [
+      "Complaint",
+      "Supporting evidence",
+      "Relief sought in writing"
+    ],
+    "keywords": [
+      "refund",
+      "replacement",
+      "compensation",
+      "consumer relief"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -187,8 +342,18 @@
     "applicable_to": "consumer",
     "typical_deadline_days": 15,
     "authority_to_approach": "Company grievance cell / District Consumer Commission",
-    "documents_needed": ["Written complaint to company", "Invoice", "Photos", "Warranty card"],
-    "keywords": ["defective goods", "company notice", "grievance", "consumer"],
+    "documents_needed": [
+      "Written complaint to company",
+      "Invoice",
+      "Photos",
+      "Warranty card"
+    ],
+    "keywords": [
+      "defective goods",
+      "company notice",
+      "grievance",
+      "consumer"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -199,8 +364,19 @@
     "applicable_to": "consumer",
     "typical_deadline_days": 30,
     "authority_to_approach": "Platform grievance officer / District Consumer Commission",
-    "documents_needed": ["Order ID", "Screenshots", "Chat records", "Payment proof"],
-    "keywords": ["ecommerce", "online shopping", "refund", "marketplace", "consumer"],
+    "documents_needed": [
+      "Order ID",
+      "Screenshots",
+      "Chat records",
+      "Payment proof"
+    ],
+    "keywords": [
+      "ecommerce",
+      "online shopping",
+      "refund",
+      "marketplace",
+      "consumer"
+    ],
     "source_url": "https://consumeraffairs.nic.in/"
   },
   {
@@ -211,8 +387,19 @@
     "applicable_to": "employee",
     "typical_deadline_days": 90,
     "authority_to_approach": "Labour Court / Conciliation Officer",
-    "documents_needed": ["Appointment letter", "Termination letter", "Salary slips", "PF records"],
-    "keywords": ["termination", "wrongful dismissal", "employee", "labour", "workman"],
+    "documents_needed": [
+      "Appointment letter",
+      "Termination letter",
+      "Salary slips",
+      "PF records"
+    ],
+    "keywords": [
+      "termination",
+      "wrongful dismissal",
+      "employee",
+      "labour",
+      "workman"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -223,8 +410,17 @@
     "applicable_to": "employee",
     "typical_deadline_days": 30,
     "authority_to_approach": "Labour Commissioner / Labour Court",
-    "documents_needed": ["Termination notice", "Service records", "Compensation calculation"],
-    "keywords": ["retrenchment", "compensation", "notice period", "employee"],
+    "documents_needed": [
+      "Termination notice",
+      "Service records",
+      "Compensation calculation"
+    ],
+    "keywords": [
+      "retrenchment",
+      "compensation",
+      "notice period",
+      "employee"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -235,8 +431,17 @@
     "applicable_to": "employee",
     "typical_deadline_days": 30,
     "authority_to_approach": "Labour Court",
-    "documents_needed": ["Seniority list", "Termination order", "Employment records"],
-    "keywords": ["retrenchment", "seniority", "last in first out", "employee"],
+    "documents_needed": [
+      "Seniority list",
+      "Termination order",
+      "Employment records"
+    ],
+    "keywords": [
+      "retrenchment",
+      "seniority",
+      "last in first out",
+      "employee"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -247,8 +452,16 @@
     "applicable_to": "employee",
     "typical_deadline_days": null,
     "authority_to_approach": "Labour Court / Conciliation Officer",
-    "documents_needed": ["Pending case details", "Termination notice", "Service records"],
-    "keywords": ["dismissal during dispute", "employer restriction", "labour"],
+    "documents_needed": [
+      "Pending case details",
+      "Termination notice",
+      "Service records"
+    ],
+    "keywords": [
+      "dismissal during dispute",
+      "employer restriction",
+      "labour"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -259,8 +472,19 @@
     "applicable_to": "employee",
     "typical_deadline_days": 30,
     "authority_to_approach": "Labour Inspector / Labour Commissioner",
-    "documents_needed": ["Appointment letter", "Termination letter", "Salary records", "Leave records"],
-    "keywords": ["termination", "notice period", "shops act", "employee", "salary dues"],
+    "documents_needed": [
+      "Appointment letter",
+      "Termination letter",
+      "Salary records",
+      "Leave records"
+    ],
+    "keywords": [
+      "termination",
+      "notice period",
+      "shops act",
+      "employee",
+      "salary dues"
+    ],
     "source_url": "https://labour.gov.in/"
   },
   {
@@ -271,8 +495,18 @@
     "applicable_to": "employee",
     "typical_deadline_days": 180,
     "authority_to_approach": "Authority under Payment of Wages Act",
-    "documents_needed": ["Salary slips", "Bank statements", "Termination letter", "Employment proof"],
-    "keywords": ["unpaid salary", "wage deduction", "employee", "dues"],
+    "documents_needed": [
+      "Salary slips",
+      "Bank statements",
+      "Termination letter",
+      "Employment proof"
+    ],
+    "keywords": [
+      "unpaid salary",
+      "wage deduction",
+      "employee",
+      "dues"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -283,8 +517,18 @@
     "applicable_to": "citizen",
     "typical_deadline_days": 30,
     "authority_to_approach": "Public Information Officer (PIO) of relevant department",
-    "documents_needed": ["RTI application", "Fee payment proof", "ID copy"],
-    "keywords": ["rti", "information", "public authority", "pio", "application"],
+    "documents_needed": [
+      "RTI application",
+      "Fee payment proof",
+      "ID copy"
+    ],
+    "keywords": [
+      "rti",
+      "information",
+      "public authority",
+      "pio",
+      "application"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -295,8 +539,17 @@
     "applicable_to": "citizen",
     "typical_deadline_days": 30,
     "authority_to_approach": "First Appellate Authority (if delayed/denied)",
-    "documents_needed": ["RTI application copy", "Acknowledgement", "PIO response"],
-    "keywords": ["rti timeline", "30 days", "pio response", "delay"],
+    "documents_needed": [
+      "RTI application copy",
+      "Acknowledgement",
+      "PIO response"
+    ],
+    "keywords": [
+      "rti timeline",
+      "30 days",
+      "pio response",
+      "delay"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -307,8 +560,17 @@
     "applicable_to": "citizen",
     "typical_deadline_days": 30,
     "authority_to_approach": "First Appellate Authority",
-    "documents_needed": ["RTI copy", "PIO reply or proof of no reply", "Appeal letter"],
-    "keywords": ["rti appeal", "first appeal", "denial", "information"],
+    "documents_needed": [
+      "RTI copy",
+      "PIO reply or proof of no reply",
+      "Appeal letter"
+    ],
+    "keywords": [
+      "rti appeal",
+      "first appeal",
+      "denial",
+      "information"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -319,8 +581,16 @@
     "applicable_to": "citizen",
     "typical_deadline_days": 90,
     "authority_to_approach": "State Information Commission / Central Information Commission",
-    "documents_needed": ["First appeal records", "Orders received", "RTI trail documents"],
-    "keywords": ["rti second appeal", "information commission", "denial"],
+    "documents_needed": [
+      "First appeal records",
+      "Orders received",
+      "RTI trail documents"
+    ],
+    "keywords": [
+      "rti second appeal",
+      "information commission",
+      "denial"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -331,8 +601,15 @@
     "applicable_to": "citizen",
     "typical_deadline_days": null,
     "authority_to_approach": "PIO of relevant department",
-    "documents_needed": ["Application fee", "BPL card if applicable"],
-    "keywords": ["rti fee", "application", "bpl exemption"],
+    "documents_needed": [
+      "Application fee",
+      "BPL card if applicable"
+    ],
+    "keywords": [
+      "rti fee",
+      "application",
+      "bpl exemption"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -343,8 +620,17 @@
     "applicable_to": "citizen",
     "typical_deadline_days": null,
     "authority_to_approach": "High Court / Supreme Court (writ jurisdiction)",
-    "documents_needed": ["Factual affidavit", "Supporting documents", "Legal notice if any"],
-    "keywords": ["fundamental right", "life liberty", "article 21", "constitutional"],
+    "documents_needed": [
+      "Factual affidavit",
+      "Supporting documents",
+      "Legal notice if any"
+    ],
+    "keywords": [
+      "fundamental right",
+      "life liberty",
+      "article 21",
+      "constitutional"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -355,8 +641,18 @@
     "applicable_to": "accused",
     "typical_deadline_days": 1,
     "authority_to_approach": "Magistrate / Lawyer / Legal Services Authority",
-    "documents_needed": ["Arrest memo", "FIR copy", "Medical records if applicable"],
-    "keywords": ["arrest", "detention", "police", "magistrate", "article 22"],
+    "documents_needed": [
+      "Arrest memo",
+      "FIR copy",
+      "Medical records if applicable"
+    ],
+    "keywords": [
+      "arrest",
+      "detention",
+      "police",
+      "magistrate",
+      "article 22"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -367,8 +663,17 @@
     "applicable_to": "citizen",
     "typical_deadline_days": null,
     "authority_to_approach": "District Legal Services Authority (DLSA)",
-    "documents_needed": ["Income proof", "ID proof", "Case documents"],
-    "keywords": ["free legal aid", "dlsa", "poor", "justice access"],
+    "documents_needed": [
+      "Income proof",
+      "ID proof",
+      "Case documents"
+    ],
+    "keywords": [
+      "free legal aid",
+      "dlsa",
+      "poor",
+      "justice access"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -379,8 +684,18 @@
     "applicable_to": "accused",
     "typical_deadline_days": 7,
     "authority_to_approach": "Lawyer / Police Station mentioned in notice",
-    "documents_needed": ["Notice copy", "ID proof", "Supporting documents"],
-    "keywords": ["police notice", "41a", "appear", "criminal", "notice"],
+    "documents_needed": [
+      "Notice copy",
+      "ID proof",
+      "Supporting documents"
+    ],
+    "keywords": [
+      "police notice",
+      "41a",
+      "appear",
+      "criminal",
+      "notice"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -391,8 +706,19 @@
     "applicable_to": "aggrieved_person",
     "typical_deadline_days": null,
     "authority_to_approach": "Magistrate / Protection Officer",
-    "documents_needed": ["Application", "Medical records", "Photos", "Witness statements", "ID proof"],
-    "keywords": ["domestic violence", "protection order", "family", "magistrate"],
+    "documents_needed": [
+      "Application",
+      "Medical records",
+      "Photos",
+      "Witness statements",
+      "ID proof"
+    ],
+    "keywords": [
+      "domestic violence",
+      "protection order",
+      "family",
+      "magistrate"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -403,8 +729,19 @@
     "applicable_to": "dependent",
     "typical_deadline_days": null,
     "authority_to_approach": "Magistrate Court",
-    "documents_needed": ["Marriage proof", "Income proof of respondent", "Expense details", "ID proof"],
-    "keywords": ["maintenance", "alimony", "family", "wife", "children"],
+    "documents_needed": [
+      "Marriage proof",
+      "Income proof of respondent",
+      "Expense details",
+      "ID proof"
+    ],
+    "keywords": [
+      "maintenance",
+      "alimony",
+      "family",
+      "wife",
+      "children"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -415,8 +752,18 @@
     "applicable_to": "spouse",
     "typical_deadline_days": null,
     "authority_to_approach": "Family Court / Lawyer",
-    "documents_needed": ["Marriage certificate", "Notice correspondence", "Evidence if any"],
-    "keywords": ["divorce", "family law", "marriage", "cruelty", "mutual consent"],
+    "documents_needed": [
+      "Marriage certificate",
+      "Notice correspondence",
+      "Evidence if any"
+    ],
+    "keywords": [
+      "divorce",
+      "family law",
+      "marriage",
+      "cruelty",
+      "mutual consent"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -427,8 +774,19 @@
     "applicable_to": "all",
     "typical_deadline_days": 15,
     "authority_to_approach": "Lawyer / Legal Aid Cell",
-    "documents_needed": ["Original notice", "Written reply", "Courier receipt", "Supporting documents"],
-    "keywords": ["legal notice", "reply", "deadline", "lawyer", "response"],
+    "documents_needed": [
+      "Original notice",
+      "Written reply",
+      "Courier receipt",
+      "Supporting documents"
+    ],
+    "keywords": [
+      "legal notice",
+      "reply",
+      "deadline",
+      "lawyer",
+      "response"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -439,8 +797,17 @@
     "applicable_to": "all",
     "typical_deadline_days": null,
     "authority_to_approach": "Lawyer",
-    "documents_needed": ["Notice with dates", "Event timeline", "Cause of action documents"],
-    "keywords": ["limitation", "deadline", "time bar", "filing delay"],
+    "documents_needed": [
+      "Notice with dates",
+      "Event timeline",
+      "Cause of action documents"
+    ],
+    "keywords": [
+      "limitation",
+      "deadline",
+      "time bar",
+      "filing delay"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -451,8 +818,17 @@
     "applicable_to": "tenant",
     "typical_deadline_days": null,
     "authority_to_approach": "Rent Controller",
-    "documents_needed": ["Rent receipts", "Bank transfer proof", "Rent agreement"],
-    "keywords": ["rent receipt", "payment proof", "tenant evidence", "delhi"],
+    "documents_needed": [
+      "Rent receipts",
+      "Bank transfer proof",
+      "Rent agreement"
+    ],
+    "keywords": [
+      "rent receipt",
+      "payment proof",
+      "tenant evidence",
+      "delhi"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -463,8 +839,17 @@
     "applicable_to": "accused_drawer",
     "typical_deadline_days": 15,
     "authority_to_approach": "Lawyer / Mediation",
-    "documents_needed": ["Settlement agreement", "Payment proof", "Withdrawal affidavit"],
-    "keywords": ["settlement", "cheque bounce", "compromise", "138"],
+    "documents_needed": [
+      "Settlement agreement",
+      "Payment proof",
+      "Withdrawal affidavit"
+    ],
+    "keywords": [
+      "settlement",
+      "cheque bounce",
+      "compromise",
+      "138"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -475,8 +860,16 @@
     "applicable_to": "consumer",
     "typical_deadline_days": 30,
     "authority_to_approach": "Consumer Mediation Cell",
-    "documents_needed": ["Complaint", "Company response", "Mediation consent"],
-    "keywords": ["mediation", "consumer dispute", "settlement"],
+    "documents_needed": [
+      "Complaint",
+      "Company response",
+      "Mediation consent"
+    ],
+    "keywords": [
+      "mediation",
+      "consumer dispute",
+      "settlement"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -487,8 +880,19 @@
     "applicable_to": "employee",
     "typical_deadline_days": 30,
     "authority_to_approach": "EPFO Regional Office",
-    "documents_needed": ["UAN", "PF passbook", "Termination letter", "KYC documents"],
-    "keywords": ["pf", "epfo", "termination dues", "employee", "withdrawal"],
+    "documents_needed": [
+      "UAN",
+      "PF passbook",
+      "Termination letter",
+      "KYC documents"
+    ],
+    "keywords": [
+      "pf",
+      "epfo",
+      "termination dues",
+      "employee",
+      "withdrawal"
+    ],
     "source_url": "https://www.epfindia.gov.in/"
   },
   {
@@ -499,8 +903,17 @@
     "applicable_to": "employee",
     "typical_deadline_days": 30,
     "authority_to_approach": "Controlling Authority under Gratuity Act",
-    "documents_needed": ["Service records", "Termination letter", "Salary slips"],
-    "keywords": ["gratuity", "employee dues", "termination", "5 years"],
+    "documents_needed": [
+      "Service records",
+      "Termination letter",
+      "Salary slips"
+    ],
+    "keywords": [
+      "gratuity",
+      "employee dues",
+      "termination",
+      "5 years"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -511,8 +924,17 @@
     "applicable_to": "family_member",
     "typical_deadline_days": null,
     "authority_to_approach": "Civil Court / Mediation",
-    "documents_needed": ["Property documents", "Family tree", "Will if any"],
-    "keywords": ["inheritance", "property", "family law", "succession"],
+    "documents_needed": [
+      "Property documents",
+      "Family tree",
+      "Will if any"
+    ],
+    "keywords": [
+      "inheritance",
+      "property",
+      "family law",
+      "succession"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -523,8 +945,17 @@
     "applicable_to": "victim",
     "typical_deadline_days": null,
     "authority_to_approach": "Cyber Crime Police Station / cybercrime.gov.in",
-    "documents_needed": ["Screenshots", "Transaction records", "Complaint affidavit"],
-    "keywords": ["cyber crime", "online fraud", "identity theft", "it act"],
+    "documents_needed": [
+      "Screenshots",
+      "Transaction records",
+      "Complaint affidavit"
+    ],
+    "keywords": [
+      "cyber crime",
+      "online fraud",
+      "identity theft",
+      "it act"
+    ],
     "source_url": "https://cybercrime.gov.in/"
   },
   {
@@ -535,8 +966,18 @@
     "applicable_to": "victim",
     "typical_deadline_days": null,
     "authority_to_approach": "Motor Accidents Claims Tribunal (MACT)",
-    "documents_needed": ["FIR", "Medical bills", "Insurance details", "Accident photos"],
-    "keywords": ["accident", "compensation", "mact", "motor vehicle"],
+    "documents_needed": [
+      "FIR",
+      "Medical bills",
+      "Insurance details",
+      "Accident photos"
+    ],
+    "keywords": [
+      "accident",
+      "compensation",
+      "mact",
+      "motor vehicle"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -547,8 +988,18 @@
     "applicable_to": "employee",
     "typical_deadline_days": 90,
     "authority_to_approach": "Internal Complaints Committee / Local Complaints Committee",
-    "documents_needed": ["Written complaint", "Evidence", "Witness details if any"],
-    "keywords": ["sexual harassment", "workplace", "icc", "posh", "employee"],
+    "documents_needed": [
+      "Written complaint",
+      "Evidence",
+      "Witness details if any"
+    ],
+    "keywords": [
+      "sexual harassment",
+      "workplace",
+      "icc",
+      "posh",
+      "employee"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -559,8 +1010,17 @@
     "applicable_to": "worker",
     "typical_deadline_days": null,
     "authority_to_approach": "District Magistrate / Labour Department",
-    "documents_needed": ["Identity proof", "Statement of facts", "Witness if available"],
-    "keywords": ["bonded labour", "forced work", "debt", "labour rights"],
+    "documents_needed": [
+      "Identity proof",
+      "Statement of facts",
+      "Witness if available"
+    ],
+    "keywords": [
+      "bonded labour",
+      "forced work",
+      "debt",
+      "labour rights"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -571,8 +1031,16 @@
     "applicable_to": "woman",
     "typical_deadline_days": null,
     "authority_to_approach": "Registered hospital / medical practitioner",
-    "documents_needed": ["Medical records", "Consent forms as required"],
-    "keywords": ["medical termination", "pregnancy", "family", "health"],
+    "documents_needed": [
+      "Medical records",
+      "Consent forms as required"
+    ],
+    "keywords": [
+      "medical termination",
+      "pregnancy",
+      "family",
+      "health"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -583,8 +1051,16 @@
     "applicable_to": "license_holder",
     "typical_deadline_days": 15,
     "authority_to_approach": "District Magistrate / Licensing Authority",
-    "documents_needed": ["License copy", "Show cause notice", "Reply affidavit"],
-    "keywords": ["arms license", "show cause", "authority notice"],
+    "documents_needed": [
+      "License copy",
+      "Show cause notice",
+      "Reply affidavit"
+    ],
+    "keywords": [
+      "arms license",
+      "show cause",
+      "authority notice"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -595,8 +1071,18 @@
     "applicable_to": "taxpayer",
     "typical_deadline_days": 30,
     "authority_to_approach": "Assessing Officer / Chartered Accountant",
-    "documents_needed": ["Notice copy", "ITR copies", "Financial records", "Reply letter"],
-    "keywords": ["income tax", "notice", "assessment", "tax reply"],
+    "documents_needed": [
+      "Notice copy",
+      "ITR copies",
+      "Financial records",
+      "Reply letter"
+    ],
+    "keywords": [
+      "income tax",
+      "notice",
+      "assessment",
+      "tax reply"
+    ],
     "source_url": "https://incometaxindia.gov.in/"
   },
   {
@@ -607,8 +1093,18 @@
     "applicable_to": "business",
     "typical_deadline_days": 30,
     "authority_to_approach": "GST Officer / Tax Consultant",
-    "documents_needed": ["SCN copy", "GST returns", "Invoices", "Reply with evidence"],
-    "keywords": ["gst", "show cause notice", "tax", "business"],
+    "documents_needed": [
+      "SCN copy",
+      "GST returns",
+      "Invoices",
+      "Reply with evidence"
+    ],
+    "keywords": [
+      "gst",
+      "show cause notice",
+      "tax",
+      "business"
+    ],
     "source_url": "https://gst.gov.in/"
   },
   {
@@ -619,8 +1115,18 @@
     "applicable_to": "property_owner",
     "typical_deadline_days": 15,
     "authority_to_approach": "Municipal Corporation / Municipal Court",
-    "documents_needed": ["Notice", "Property papers", "Building plan approval", "Reply"],
-    "keywords": ["municipal", "encroachment", "demolition", "property notice"],
+    "documents_needed": [
+      "Notice",
+      "Property papers",
+      "Building plan approval",
+      "Reply"
+    ],
+    "keywords": [
+      "municipal",
+      "encroachment",
+      "demolition",
+      "property notice"
+    ],
     "source_url": "https://indiacode.nic.in/"
   },
   {
@@ -631,8 +1137,18 @@
     "applicable_to": "consumer",
     "typical_deadline_days": 7,
     "authority_to_approach": "Utility provider / Consumer Commission",
-    "documents_needed": ["Bills", "Payment proof", "Disconnection notice", "Complaint letter"],
-    "keywords": ["electricity", "water", "disconnection", "utility notice"],
+    "documents_needed": [
+      "Bills",
+      "Payment proof",
+      "Disconnection notice",
+      "Complaint letter"
+    ],
+    "keywords": [
+      "electricity",
+      "water",
+      "disconnection",
+      "utility notice"
+    ],
     "source_url": "https://consumeraffairs.nic.in/"
   },
   {
@@ -643,8 +1159,203 @@
     "applicable_to": "eligible_citizen",
     "typical_deadline_days": null,
     "authority_to_approach": "District Legal Services Authority (DLSA)",
-    "documents_needed": ["Income certificate", "Caste certificate if applicable", "Case documents"],
-    "keywords": ["free legal aid", "dlsa", "nalsa", "poor", "legal help"],
+    "documents_needed": [
+      "Income certificate",
+      "Caste certificate if applicable",
+      "Case documents"
+    ],
+    "keywords": [
+      "free legal aid",
+      "dlsa",
+      "nalsa",
+      "poor",
+      "legal help"
+    ],
     "source_url": "https://nalsa.gov.in/"
+  },
+  {
+    "id": "RTI_8_1_d",
+    "act_name": "Right to Information Act, 2005",
+    "section": "Section 8(1)(d)",
+    "plain_summary": "A public authority may refuse information if disclosure would harm the competitive position of a third party or reveal trade/commercial secrets. If your RTI is rejected on this ground, you may challenge whether the exemption truly applies via first appeal.",
+    "applicable_to": "citizen",
+    "typical_deadline_days": 30,
+    "authority_to_approach": "First Appellate Authority under RTI Act",
+    "documents_needed": [
+      "RTI application copy",
+      "PIO rejection order",
+      "First appeal letter",
+      "Public interest grounds if any"
+    ],
+    "keywords": [
+      "rti rejection",
+      "section 8",
+      "commercial confidence",
+      "trade secret",
+      "pio denial",
+      "appeal"
+    ],
+    "source_url": "https://indiacode.nic.in/"
+  },
+  {
+    "id": "RTI_APPEAL_REJECT",
+    "act_name": "Right to Information Act, 2005",
+    "section": "Section 19(1) - Appeal against PIO rejection",
+    "plain_summary": "If the PIO rejects your RTI application or provides an unsatisfactory response, you can file a first appeal to the First Appellate Authority within 30 days of receiving the decision.",
+    "applicable_to": "citizen",
+    "typical_deadline_days": 30,
+    "authority_to_approach": "First Appellate Authority of the same public authority",
+    "documents_needed": [
+      "RTI application",
+      "PIO rejection letter",
+      "Appeal in writing",
+      "Proof of service"
+    ],
+    "keywords": [
+      "rti appeal",
+      "pio rejection",
+      "first appellate authority",
+      "section 19"
+    ],
+    "source_url": "https://indiacode.nic.in/"
+  },
+  {
+    "id": "NI_138_REMINDER",
+    "act_name": "Negotiable Instruments Act, 1881",
+    "section": "Section 138 - Pre-complaint reminder",
+    "plain_summary": "After the 15-day statutory notice period, a payee may send a final reminder before filing a Section 138 criminal complaint. The drawer should treat such reminders seriously and preserve payment proof.",
+    "applicable_to": "accused_drawer",
+    "typical_deadline_days": 7,
+    "authority_to_approach": "Lawyer / negotiate settlement before magistrate complaint",
+    "documents_needed": [
+      "Original Section 138 notice",
+      "Reminder letter",
+      "Payment proof if paid",
+      "Bank memo"
+    ],
+    "keywords": [
+      "cheque bounce",
+      "final reminder",
+      "section 138",
+      "payment",
+      "criminal complaint"
+    ],
+    "source_url": "https://indiacode.nic.in/"
+  },
+  {
+    "id": "IDA_MISCONDUCT",
+    "act_name": "Industrial Disputes Act, 1947",
+    "section": "Termination for misconduct",
+    "plain_summary": "Termination for misconduct or poor performance requires employers to follow principles of natural justice — show cause notice, inquiry opportunity, and reasoned order. Summary termination without process may be challenged.",
+    "applicable_to": "employee",
+    "typical_deadline_days": 90,
+    "authority_to_approach": "Labour Court / Conciliation Officer",
+    "documents_needed": [
+      "Appointment letter",
+      "Termination letter",
+      "Prior warning letters",
+      "Inquiry records if any"
+    ],
+    "keywords": [
+      "termination",
+      "misconduct",
+      "poor performance",
+      "show cause",
+      "wrongful dismissal"
+    ],
+    "source_url": "https://indiacode.nic.in/"
+  },
+  {
+    "id": "CPA_REFUND_NOTICE",
+    "act_name": "Consumer Protection Act, 2019",
+    "section": "Pre-complaint company notice",
+    "plain_summary": "Before approaching the Consumer Commission, a consumer should send a written notice to the seller or e-commerce platform demanding refund, replacement, or repair within a reasonable period (commonly 15 days).",
+    "applicable_to": "consumer",
+    "typical_deadline_days": 15,
+    "authority_to_approach": "Company grievance officer / District Consumer Commission",
+    "documents_needed": [
+      "Invoice",
+      "Order screenshots",
+      "Complaint tickets",
+      "Product photos",
+      "Written demand letter"
+    ],
+    "keywords": [
+      "consumer",
+      "refund",
+      "defective product",
+      "company notice",
+      "ecommerce"
+    ],
+    "source_url": "https://indiacode.nic.in/"
+  },
+  {
+    "id": "DRC_ARREARS_NOTICE",
+    "act_name": "Delhi Rent Control Act, 1958",
+    "section": "Section 14(1)(b) - Rent arrears notice",
+    "plain_summary": "A landlord may issue notice for non-payment of rent. Tenants should verify actual arrears claimed, check rent receipts, and respond in writing disputing incorrect claims before eviction proceedings.",
+    "applicable_to": "tenant",
+    "typical_deadline_days": 15,
+    "authority_to_approach": "Rent Controller, Delhi",
+    "documents_needed": [
+      "Rent receipts",
+      "Bank transfer proof",
+      "Rent agreement",
+      "Written reply"
+    ],
+    "keywords": [
+      "rent arrears",
+      "non-payment",
+      "eviction",
+      "tenant",
+      "delhi rent"
+    ],
+    "source_url": "https://indiacode.nic.in/"
+  },
+  {
+    "id": "CRPC_41A_REPLY",
+    "act_name": "Code of Criminal Procedure, 1973",
+    "section": "Section 41A - Notice to appear",
+    "plain_summary": "A Section 41A CrPC notice requires you to appear before the investigating officer on the specified date. You should appear with a lawyer, not make self-incriminating statements, and keep a copy of the notice.",
+    "applicable_to": "accused",
+    "typical_deadline_days": 7,
+    "authority_to_approach": "Lawyer / Police station mentioned in notice",
+    "documents_needed": [
+      "Notice copy",
+      "ID proof",
+      "Bail anticipatory advice from lawyer"
+    ],
+    "keywords": [
+      "police notice",
+      "41a",
+      "crpc",
+      "appear",
+      "investigation"
+    ],
+    "source_url": "https://indiacode.nic.in/"
+  },
+  {
+    "id": "GST_DEMAND_REPLY",
+    "act_name": "Central Goods and Services Tax Act, 2017",
+    "section": "Section 73 - Show cause notice",
+    "plain_summary": "A GST show-cause or demand notice requires the taxpayer to reply within the period stated, explaining discrepancies in returns, tax short-paid, or input tax credit issues. Failure to reply may lead to adverse order.",
+    "applicable_to": "taxpayer",
+    "typical_deadline_days": 30,
+    "authority_to_approach": "GST Officer / Chartered Accountant / Tax lawyer",
+    "documents_needed": [
+      "GST returns",
+      "Show cause notice",
+      "Invoices",
+      "Bank statements",
+      "Reply with reconciliation"
+    ],
+    "keywords": [
+      "gst",
+      "show cause",
+      "tax demand",
+      "itc",
+      "gst notice"
+    ],
+    "source_url": "https://cbic.gov.in/"
   }
 ]
