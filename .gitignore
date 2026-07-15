@@ -1,0 +1,22 @@
+__pycache__/
+*.pyc
+.env
+.venv/
+venv/
+*.pdf
+.DS_Store
+.ipynb_checkpoints/
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Uploads
+uploads/
+/tmp/

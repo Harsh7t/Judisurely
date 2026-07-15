@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #faf8f5;
+  --card: #ffffff;
+  --text: #1a1a2e;
+  --muted: #64748b;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+.gradient-hero {
+  background: linear-gradient(135deg, #fff8f0 0%, #fff 40%, #f0fdf4 100%);
+}
+
+.card {
+  @apply bg-white rounded-2xl shadow-sm border border-orange-100/60;
+}
+
+.btn-primary {
+  @apply bg-saffron hover:bg-saffron-dark text-white font-semibold px-6 py-3 rounded-xl transition-all shadow-md hover:shadow-lg disabled:opacity-50;
+}
+
+.btn-secondary {
+  @apply bg-white border-2 border-saffron text-saffron-dark font-medium px-5 py-2.5 rounded-xl hover:bg-orange-50 transition;
+}
+
+.urgency-high { @apply bg-red-100 text-red-800 border-red-200; }
+.urgency-medium { @apply bg-amber-100 text-amber-800 border-amber-200; }
+.urgency-low { @apply bg-green-100 text-green-800 border-green-200; }
+
+.tab-active {
+  @apply border-b-2 border-saffron text-saffron-dark font-semibold;
+}
+
+.prose-legal h3 { @apply text-lg font-semibold text-legal-900 mt-4 mb-2; }
+.prose-legal p { @apply text-slate-700 leading-relaxed mb-2; }
+.prose-legal ul { @apply list-disc pl-5 space-y-1 text-slate-700; }
