@@ -1,10 +1,10 @@
 # Kaggle install — AFTER cloning repo
-# Install in TWO steps on Kaggle to avoid Gradio vs transformers hub conflict:
-#   1) pip install -r requirements-kaggle.txt
-#   2) then run the Gradio --no-deps line from KAGGLE_SETUP.md / notebook
-#
-# Core AI + PDF + RAG
-transformers>=4.51.0
+# Gemma 4 needs transformers from git (stable pip may not have `gemma4` arch yet)
+# Install order in notebook Cell 2:
+#   1) pip install git+transformers
+#   2) pip install -r requirements-kaggle.txt
+#   3) pip install gradio --no-deps + deps
+
 accelerate>=0.34.0
 bitsandbytes>=0.43.0
 torch>=2.1.0
@@ -14,5 +14,5 @@ Pillow>=10.0.0
 pymupdf>=1.24.0
 pydantic>=2.0,<2.11
 
-# Gradio is installed separately with --no-deps (see notebook Cell 2)
-# because Gradio 4.44 wants huggingface_hub<0.26 but transformers>=4.51 needs newer hub.
+# transformers installed separately from git in notebook (see Cell 2)
+# Gradio installed separately with --no-deps in notebook

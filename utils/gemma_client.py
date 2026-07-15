@@ -106,6 +106,28 @@ def load_gemma(model_path: Optional[str] = None, force_reload: bool = False):
 
     import torch
     from transformers import AutoProcessor, AutoTokenizer, BitsAndBytesConfig
+    from transformers.models.auto.configuration_auto import CONFIG_MAPPING
+
+    if "gemma4" not in CONFIG_MAPPING:
+        raise RuntimeError(
+            "Your transformers version does not support Gemma 4 (model_type=gemma4). "
+            "On Kaggle run:\n"
+            '  !pip install -q -U "git+https://github.com/huggingface/transformers.git"\n'
+            "Then Restart Session and re-run from Cell 1."
+        )
+
+    # Gemma 4 requires very recent transformers (model_type=gemma4)
+    try:
+        from transformers.models.auto.configuration_auto import CONFIG_MAPPING
+
+        if "gemma4" not in CONFIG_MAPPING:
+            raise RuntimeError(
+                "Transformers too old for Gemma 4. On Kaggle run:\n"
+                "  !pip install -q -U 'git+https://github.com/huggingface/transformers.git'\n"
+                "Then Restart Session and re-run from Cell 1."
+            )
+    except ImportError:
+        pass
 
     bnb = BitsAndBytesConfig(
         load_in_4bit=True,

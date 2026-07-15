@@ -40,11 +40,20 @@ assert os.path.isfile("data/legal_kb.json")
 print("Ready:", os.getcwd())
 ```
 
-### Cell 2 — Install (two-step to avoid pip conflict)
+### Cell 2 — Install (transformers from git for Gemma 4)
 ```python
+# CRITICAL: Gemma 4 needs latest transformers (model_type=gemma4)
+!pip install -q -U "git+https://github.com/huggingface/transformers.git"
+
 !pip install -q -r requirements-kaggle.txt
 !pip install -q "gradio==4.44.1" "gradio-client==1.3.0" --no-deps
 !pip install -q aiofiles ffmpy python-multipart httpx orjson semantic-version toml typer "websockets==12.0" fastapi uvicorn starlette markupsafe packaging anyio sniffio h11 jinja2 huggingface-hub
+
+import transformers
+from transformers.models.auto.configuration_auto import CONFIG_MAPPING
+print("transformers:", transformers.__version__)
+print("gemma4 supported:", "gemma4" in CONFIG_MAPPING)
+assert "gemma4" in CONFIG_MAPPING
 print("Install done")
 ```
 
@@ -98,7 +107,7 @@ os.chdir("/kaggle/working/Judisurely")
 
 | Problem | Fix |
 |---------|-----|
-| `ResolutionImpossible` (huggingface_hub) | Use Cell 2 two-step install (`--no-deps` for Gradio) |
+| `gemma4` not recognized | Install transformers from git in Cell 2, then Restart Session |
 | `Judisurely/Judisurely/...` path | Restart Session, then Cell 1 (never delete while cwd is inside that folder) |
 | `legal_kb.json` not found | Confirm `os.getcwd()` is `/kaggle/working/Judisurely` and `data/legal_kb.json` exists |
 | Wrong model (gemma-2) | Remove it; add gemma-4-e2b / e2b-it |
