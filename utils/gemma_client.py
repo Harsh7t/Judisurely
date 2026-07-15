@@ -6,6 +6,7 @@ import glob
 import json
 import os
 import re
+from pathlib import Path
 from typing import Any, Optional
 
 # Globals cached after first load
@@ -43,6 +44,49 @@ def parse_json_from_response(text: str) -> dict:
     return json.loads(text)
 
 
+def _ensure_chat_template(tokenizer_or_processor, model_path: str) -> None:
+    """Gemma 4 ships chat_template.jinja separately; older transformers miss it."""
+    tmpl = getattr(tokenizer_or_processor, "chat_template", None)
+    if tmpl:
+        return
+
+    # Prefer tokenizer.chat_template if this is a processor
+    tok = getattr(tokenizer_or_processor, "tokenizer", None)
+    if tok is not None and getattr(tok, "chat_template", None):
+        tokenizer_or_processor.chat_template = tok.chat_template
+        return
+
+    jinja_paths = [
+        Path(model_path) / "chat_template.jinja",
+        *Path(model_path).glob("**/chat_template.jinja"),
+    ]
+    for jp in jinja_paths:
+        if jp.is_file():
+            text = jp.read_text(encoding="utf-8")
+            tokenizer_or_processor.chat_template = text
+            if tok is not None:
+                tok.chat_template = text
+            print(f"Loaded chat template from {jp}")
+            return
+
+    # Minimal Gemma-style fallback so inference still works
+    fallback = (
+        "{{ bos_token }}"
+        "{% for message in messages %}"
+        "{% if message['role'] == 'user' %}"
+        "<start_of_turn>user\n{{ message['content'] }}<end_of_turn>\n"
+        "{% elif message['role'] == 'model' or message['role'] == 'assistant' %}"
+        "<start_of_turn>model\n{{ message['content'] }}<end_of_turn>\n"
+        "{% endif %}"
+        "{% endfor %}"
+        "{% if add_generation_prompt %}<start_of_turn>model\n{% endif %}"
+    )
+    tokenizer_or_processor.chat_template = fallback
+    if tok is not None:
+        tok.chat_template = fallback
+    print("Using fallback Gemma chat template")
+
+
 def load_gemma(model_path: Optional[str] = None, force_reload: bool = False):
     """Load Gemma model and processor/tokenizer once."""
     global _model, _processor, _tokenizer, _use_tokenizer_only
@@ -61,7 +105,7 @@ def load_gemma(model_path: Optional[str] = None, force_reload: bool = False):
         )
 
     import torch
-    from transformers import AutoModelForCausalLM, AutoProcessor, AutoTokenizer, BitsAndBytesConfig
+    from transformers import AutoProcessor, AutoTokenizer, BitsAndBytesConfig
 
     bnb = BitsAndBytesConfig(
         load_in_4bit=True,
@@ -69,27 +113,85 @@ def load_gemma(model_path: Optional[str] = None, force_reload: bool = False):
         bnb_4bit_compute_dtype=torch.bfloat16,
     )
 
+    # Prefer Gemma 4 multimodal class; fall back to CausalLM
+    model_cls = None
     try:
-        _processor = AutoProcessor.from_pretrained(path)
-        _model = AutoModelForCausalLM.from_pretrained(
+        from transformers import AutoModelForMultimodalLM
+
+        model_cls = AutoModelForMultimodalLM
+    except ImportError:
+        try:
+            from transformers import AutoModelForImageTextToText
+
+            model_cls = AutoModelForImageTextToText
+        except ImportError:
+            from transformers import AutoModelForCausalLM
+
+            model_cls = AutoModelForCausalLM
+
+    print(f"Loading Gemma from: {path}")
+    print(f"Using model class: {model_cls.__name__}")
+
+    try:
+        _processor = AutoProcessor.from_pretrained(path, trust_remote_code=True)
+        _ensure_chat_template(_processor, path)
+        _model = model_cls.from_pretrained(
             path,
             quantization_config=bnb,
             device_map="cuda:0",
             torch_dtype=torch.bfloat16,
+            trust_remote_code=True,
         )
         _use_tokenizer_only = False
+        # Keep tokenizer reference for decoding fallbacks
+        _tokenizer = getattr(_processor, "tokenizer", None) or _processor
         return _model, _processor
-    except Exception:
-        _tokenizer = AutoTokenizer.from_pretrained(path)
+    except Exception as e:
+        print(f"Processor load failed ({e}); falling back to tokenizer-only")
+        _tokenizer = AutoTokenizer.from_pretrained(path, trust_remote_code=True)
+        _ensure_chat_template(_tokenizer, path)
+        from transformers import AutoModelForCausalLM
+
         _model = AutoModelForCausalLM.from_pretrained(
             path,
             quantization_config=bnb,
             device_map="cuda:0",
             torch_dtype=torch.bfloat16,
+            trust_remote_code=True,
         )
         _processor = _tokenizer
         _use_tokenizer_only = True
         return _model, _tokenizer
+
+
+def _get_device(model) -> Any:
+    try:
+        return model.device
+    except Exception:
+        pass
+    try:
+        return next(model.parameters()).device
+    except Exception:
+        import torch
+
+        return torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+
+
+def _build_messages(system_prompt: str, user_input: str) -> list:
+    # Gemma chat templates often expect user/model roles; fold system into user
+    return [
+        {
+            "role": "user",
+            "content": f"{system_prompt}\n\n{user_input}",
+        }
+    ]
+
+
+def _format_prompt_fallback(system_prompt: str, user_input: str) -> str:
+    return (
+        f"<start_of_turn>user\n{system_prompt}\n\n{user_input}<end_of_turn>\n"
+        f"<start_of_turn>model\n"
+    )
 
 
 def call_gemma(
@@ -99,7 +201,7 @@ def call_gemma(
     temperature: float = 0.3,
 ) -> str:
     """Run a single Gemma generation call."""
-    global _model, _processor
+    global _model, _processor, _tokenizer
 
     if is_dev_mode():
         return _mock_response(system_prompt, user_input)
@@ -108,39 +210,96 @@ def call_gemma(
         load_gemma()
 
     if _model is None:
-        raise RuntimeError("Gemma model not loaded. Add gemma-4-e2b-it on Kaggle or set NYAY_MITRA_DEV=1 locally.")
+        raise RuntimeError(
+            "Gemma model not loaded. Add gemma-4-e2b-it on Kaggle or set NYAY_MITRA_DEV=1 locally."
+        )
 
     import torch
 
-    model, proc = _model, _processor
-    messages = [
-        {"role": "user", "content": f"{system_prompt}\n\n{user_input}"},
-    ]
+    model = _model
+    proc = _processor
+    tok = _tokenizer or getattr(proc, "tokenizer", None) or proc
+    device = _get_device(model)
+    messages = _build_messages(system_prompt, user_input)
 
-    if _use_tokenizer_only:
-        inputs = proc.apply_chat_template(
-            messages, return_tensors="pt", add_generation_prompt=True
-        ).to(model.device)
-        input_len = inputs.shape[-1]
-        outputs = model.generate(
-            inputs,
-            max_new_tokens=max_tokens,
-            temperature=temperature,
-            do_sample=temperature > 0,
+    # Ensure template exists before calling
+    path = find_model_path() or ""
+    _ensure_chat_template(proc, path)
+    if tok is not proc:
+        _ensure_chat_template(tok, path)
+
+    inputs = None
+    input_len = 0
+
+    # Strategy 1: processor.apply_chat_template with return_dict (Gemma 4 official)
+    try:
+        out = proc.apply_chat_template(
+            messages,
+            tokenize=True,
+            return_dict=True,
+            return_tensors="pt",
+            add_generation_prompt=True,
+            enable_thinking=False,
         )
-        return proc.decode(outputs[0][input_len:], skip_special_tokens=True)
+        if isinstance(out, dict) or hasattr(out, "keys"):
+            inputs = {k: v.to(device) if hasattr(v, "to") else v for k, v in dict(out).items()}
+            input_len = inputs["input_ids"].shape[-1]
+        else:
+            inputs = out.to(device)
+            input_len = inputs.shape[-1]
+    except Exception as e1:
+        print(f"apply_chat_template via processor failed: {e1}")
+        # Strategy 2: tokenizer.apply_chat_template
+        try:
+            out = tok.apply_chat_template(
+                messages,
+                tokenize=True,
+                return_dict=True,
+                return_tensors="pt",
+                add_generation_prompt=True,
+            )
+            if isinstance(out, dict) or hasattr(out, "keys"):
+                inputs = {k: v.to(device) if hasattr(v, "to") else v for k, v in dict(out).items()}
+                input_len = inputs["input_ids"].shape[-1]
+            else:
+                inputs = out.to(device)
+                input_len = inputs.shape[-1]
+        except Exception as e2:
+            print(f"tokenizer chat template failed: {e2}; using string fallback")
+            # Strategy 3: manual prompt + tokenize
+            prompt = _format_prompt_fallback(system_prompt, user_input)
+            encoded = tok(prompt, return_tensors="pt")
+            inputs = {k: v.to(device) for k, v in encoded.items()}
+            input_len = inputs["input_ids"].shape[-1]
 
-    inputs = proc.apply_chat_template(
-        messages, return_tensors="pt", add_generation_prompt=True
-    ).to(model.device)
-    input_len = inputs.shape[-1]
-    outputs = model.generate(
-        inputs,
-        max_new_tokens=max_tokens,
-        temperature=temperature,
-        do_sample=temperature > 0,
-    )
-    return proc.decode(outputs[0][input_len:], skip_special_tokens=True)
+    gen_kwargs = {
+        "max_new_tokens": max_tokens,
+        "temperature": temperature if temperature > 0 else None,
+        "do_sample": temperature > 0,
+    }
+    # Clean None values
+    gen_kwargs = {k: v for k, v in gen_kwargs.items() if v is not None}
+
+    with torch.inference_mode():
+        if isinstance(inputs, dict):
+            outputs = model.generate(**inputs, **gen_kwargs)
+        else:
+            outputs = model.generate(inputs, **gen_kwargs)
+
+    generated = outputs[0][input_len:]
+    try:
+        text = proc.decode(generated, skip_special_tokens=True)
+    except Exception:
+        text = tok.decode(generated, skip_special_tokens=True)
+
+    # If thinking tags remain, keep content after model turn / strip think blocks
+    if "<|channel|>" in text or "<|think|>" in text:
+        # Prefer final answer after think block if present
+        for marker in ("</think>", "<end_of_thought>", "<|channel|>final"):
+            if marker in text:
+                text = text.split(marker)[-1]
+                break
+    return text.strip()
 
 
 def _mock_response(system_prompt: str, user_input: str) -> str:

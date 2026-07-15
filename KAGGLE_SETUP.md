@@ -21,18 +21,20 @@
 
 ## Step 3 — Run notebook cells (copy from `nyay_mitra.ipynb`)
 
-### Cell 1 — Install
+### Cell 1 — Clone repo FIRST (requirements file is inside the repo)
 ```python
-!pip install -q -r requirements-kaggle.txt
-!pip install -q -U transformers
+!git clone https://github.com/Harsh7t/Judisurely.git
+%cd Judisurely
+import sys; sys.path.insert(0, ".")
+print("Ready!")
 ```
 
-### Cell 2 — Clone your repo
+### Cell 2 — Install dependencies
 ```python
-!git clone https://github.com/YOUR_USERNAME/nyay-mitra.git
-%cd nyay-mitra
-import sys; sys.path.insert(0, ".")
+# Warnings about pydantic/websockets vs Kaggle pre-installed packages are OK — ignore them
+!pip install -q -r requirements-kaggle.txt
 ```
+**Do NOT run `pip install -U transformers` separately** — it breaks Gradio's huggingface_hub pin.
 
 ### Cell 3 — Verify Gemma path
 ```python
