@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 
 export const metadata: Metadata = {
-  title: "Nyay Mitra — AI Legal Action Engine",
+  title: "Judisurely — AI Legal Action Engine",
   description: "Upload a legal notice, understand your rights, get your action plan. Powered by Gemma 4.",
 };
 

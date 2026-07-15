@@ -24,11 +24,11 @@ def find_model_path() -> Optional[str]:
     legacy = glob.glob("/kaggle/input/gemma-4/**/config.json", recursive=True)
     if legacy:
         return legacy[0].replace("/config.json", "")
-    return os.getenv("NYAY_MITRA_MODEL_PATH")
+    return os.getenv("JUDISURELY_MODEL_PATH") or os.getenv("NYAY_MITRA_MODEL_PATH")
 
 
 def is_dev_mode() -> bool:
-    return os.getenv("NYAY_MITRA_DEV", "0") == "1"
+    return os.getenv("JUDISURELY_DEV", os.getenv("NYAY_MITRA_DEV", "0")) == "1"
 
 
 def parse_json_from_response(text: str) -> dict:
@@ -101,7 +101,7 @@ def load_gemma(model_path: Optional[str] = None, force_reload: bool = False):
     if not path:
         raise RuntimeError(
             "No Gemma model found. On Kaggle: Add Input → Models → gemma-4-e2b-it. "
-            "Locally: set NYAY_MITRA_DEV=1 for mock mode."
+            "Locally: set JUDISURELY_DEV=1 for mock mode."
         )
 
     import torch
@@ -233,7 +233,7 @@ def call_gemma(
 
     if _model is None:
         raise RuntimeError(
-            "Gemma model not loaded. Add gemma-4-e2b-it on Kaggle or set NYAY_MITRA_DEV=1 locally."
+            "Gemma model not loaded. Add gemma-4-e2b-it on Kaggle or set JUDISURELY_DEV=1 locally."
         )
 
     import torch

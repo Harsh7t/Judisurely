@@ -1,4 +1,4 @@
-# Nyay Mitra — Kaggle Setup (Step by Step)
+# Judisurely — Kaggle Setup (Step by Step)
 
 ## Before you start
 - [ ] Code pushed to **public GitHub**

@@ -6,7 +6,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - NYAY_MITRA_DEV=1
+      - JUDISURELY_DEV=1
       - CORS_ORIGINS=http://localhost:3000
     volumes:
       - ./data:/app/data

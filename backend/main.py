@@ -1,4 +1,4 @@
-"""Nyay Mitra FastAPI backend."""
+"""Judisurely FastAPI backend."""
 
 import os
 import sys
@@ -20,7 +20,7 @@ from utils.rag import load_knowledge_base  # noqa: E402
 from utils.schemas import TEMPLATE_NAMES  # noqa: E402
 
 app = FastAPI(
-    title="Nyay Mitra API",
+    title="Judisurely API",
     description="AI Legal Action Engine — Gemma 4 + RAG",
     version="1.0.0",
 )
@@ -47,8 +47,8 @@ def startup():
 def health():
     return {
         "status": "ok",
-        "service": "Nyay Mitra",
-        "dev_mode": os.getenv("NYAY_MITRA_DEV", "0") == "1",
+        "service": "Judisurely",
+        "dev_mode": os.getenv("JUDISURELY_DEV", os.getenv("NYAY_MITRA_DEV", "0")) == "1",
         "templates": TEMPLATE_NAMES,
     }
 
@@ -79,4 +79,4 @@ async def analyze(
 @app.post("/api/pdf")
 async def create_pdf(draft_text: str = Form(...)):
     path = generate_pdf(draft_text)
-    return FileResponse(path, filename="nyay_mitra_draft.pdf", media_type="application/pdf")
+    return FileResponse(path, filename="judisurely_draft.pdf", media_type="application/pdf")

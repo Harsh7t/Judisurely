@@ -8,7 +8,7 @@ from pathlib import Path
 
 def find_project_root() -> Path:
     """Find repo root by locating data/legal_kb.json."""
-    env_root = os.getenv("NYAY_MITRA_ROOT")
+    env_root = os.getenv("JUDISURELY_ROOT") or os.getenv("NYAY_MITRA_ROOT")
     if env_root:
         root = Path(env_root)
         if (root / "data" / "legal_kb.json").is_file():

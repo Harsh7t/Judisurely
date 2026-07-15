@@ -21,7 +21,7 @@ export default function Home() {
   const [history, setHistory] = useState<CaseRecord[]>([]);
 
   useEffect(() => {
-    const saved = localStorage.getItem("nyay_cases");
+    const saved = localStorage.getItem("judisurely_cases") || localStorage.getItem("nyay_cases");
     if (saved) setHistory(JSON.parse(saved));
   }, []);
 
@@ -35,7 +35,7 @@ export default function Home() {
     };
     const updated = [record, ...history].slice(0, 10);
     setHistory(updated);
-    localStorage.setItem("nyay_cases", JSON.stringify(updated));
+    localStorage.setItem("judisurely_cases", JSON.stringify(updated));
   }, [history]);
 
   const handleResult = useCallback((r: AnalysisResult) => {
@@ -87,7 +87,7 @@ export default function Home() {
           <div className="lg:col-span-1 space-y-4">
             <UploadPanel onResult={handleResult} loading={loading} setLoading={setLoading} />
             <CaseHistory cases={history} onSelect={(c) => setResult(c.result)}
-              onClear={() => { setHistory([]); localStorage.removeItem("nyay_cases"); }} />
+              onClear={() => { setHistory([]); localStorage.removeItem("judisurely_cases"); localStorage.removeItem("nyay_cases"); }} />
             <Disclaimer />
           </div>
           <div className="lg:col-span-2">
@@ -107,7 +107,7 @@ export default function Home() {
       {/* How it works */}
       <section className="bg-legal-900 text-white py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="font-display text-2xl font-bold mb-8">How Nyay Mitra Works</h2>
+          <h2 className="font-display text-2xl font-bold mb-8">How Judisurely Works</h2>
           <div className="grid sm:grid-cols-4 gap-6 text-sm">
             {["Gemma extracts notice", "RAG finds real laws", "Gemma reasons & plans", "Download your draft"].map((step, i) => (
               <div key={step}>
@@ -120,7 +120,7 @@ export default function Home() {
       </section>
 
       <footer className="text-center py-8 text-sm text-muted">
-        Nyay Mitra · Harshit, Prem, Shreya · Build with Gemma – AIMS DTU
+        Judisurely · Harshit, Prem, Shreya · Build with Gemma – AIMS DTU
       </footer>
     </main>
   );

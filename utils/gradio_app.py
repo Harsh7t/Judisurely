@@ -1,4 +1,4 @@
-"""Gradio web UI for Nyay Mitra."""
+"""Gradio web UI for Judisurely."""
 
 from utils.hf_compat import patch_huggingface_hub_for_gradio
 
@@ -57,11 +57,11 @@ def run_pdf_export(draft_text):
 def build_demo():
     """Build and return Gradio Blocks app."""
     with gr.Blocks(
-        title="Nyay Mitra - AI Legal Action Engine",
+        title="Judisurely - AI Legal Action Engine",
         theme=gr.themes.Soft(primary_hue="orange"),
     ) as demo:
         gr.Markdown(
-            """# ⚖️ Nyay Mitra — AI Legal Action Engine
+            """# ⚖️ Judisurely — AI Legal Action Engine
 *Upload a legal notice → Understand your rights → Get your action plan → Download your draft*
 
 **Powered by Gemma 4** | Track 1: AI for Legal Assistance | Build with Gemma – AIMS DTU

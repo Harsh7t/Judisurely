@@ -1,21 +1,22 @@
-# Nyay Mitra — Continuation Prompt for Cursor
+# Judisurely — Continuation Prompt for Cursor
 
 Copy everything below into a new Cursor chat to continue this project.
 
 ---
 
-## PROJECT: Nyay Mitra — AI Legal Action Engine
+## PROJECT: Judisurely — AI Legal Action Engine
 **Hackathon:** Build with Gemma – AIMS DTU | Track 1: AI for Legal Assistance
 **Team:** Harshit, Prem, Shreya
+**Repo:** https://github.com/Harsh7t/Judisurely
 **Deadline:** Jul 15, 2026, 5:00 PM IST
 
 ## REPO LOCATION
 `/Users/harshitsengar/Desktop/GemmaTRACK1`
 
 ## WHAT'S DONE
-1. **Dataset:** `data/legal_kb.json` (55 Indian law clauses), `data/sample_notices/` (6 test notices), `data/draft_templates.json`
+1. **Dataset:** `data/legal_kb.json` (62 Indian law clauses), `data/sample_notices/` (20 test notices), `data/draft_templates.json`
 2. **AI Pipeline:** `utils/pipeline.py` — 3 Gemma calls (extract → RAG → reason → draft) + `utils/rag.py` (TF-IDF), `utils/gemma_client.py`, `utils/pdf_generator.py`
-3. **Gradio demo:** `utils/gradio_app.py` + `run.py` (works locally with `NYAY_MITRA_DEV=1`)
+3. **Gradio demo:** `utils/gradio_app.py` + `run.py` (works locally with `JUDISURELY_DEV=1`)
 4. **FastAPI backend:** `backend/main.py` — `/api/analyze`, `/api/pdf`, `/api/health`
 5. **Next.js frontend:** `frontend/` — full UI with upload, tabs (summary/actions/draft/sources), deadline countdown, thinking mode, case history (localStorage), PDF download
 6. **Docker:** `docker-compose.yml` for backend + frontend
@@ -33,7 +34,7 @@ Alternative: Gradio in Kaggle notebook for hackathon submission demo
 cd /Users/harshitsengar/Desktop/GemmaTRACK1
 source venv/bin/activate
 pip install -r requirements-local.txt
-export NYAY_MITRA_DEV=1
+export JUDISURELY_DEV=1
 uvicorn backend.main:app --reload --port 8000
 
 # Terminal 2 — Frontend
@@ -45,24 +46,22 @@ npm run dev
 
 ## HOW TO RUN ON KAGGLE (REAL GEMMA)
 1. GPU T4, Internet ON, Add Gemma 4 e2b-it model
-2. Clone GitHub repo
+2. Clone GitHub repo: `https://github.com/Harsh7t/Judisurely.git`
 3. Load Gemma into `utils.gemma_client` globals
-4. Either run Gradio (`python run.py`) OR FastAPI + use Gradio share URL for submission
+4. Run `python run_kaggle.py` for Gradio share URL
 
 ## SUBMISSION STILL NEEDED
-- [ ] Push to public GitHub
-- [ ] Kaggle notebook public + Save & Run All
-- [ ] Gradio `share=True` demo URL OR deployed website URL
+- [x] Push to public GitHub
+- [x] Kaggle notebook public + Gradio demo
 - [ ] Kaggle Writeup ≤1500 words (problem, Gemma usage, architecture, impact)
-- [ ] Attach GitHub + demo links to writeup
+- [ ] 3-min demo video
 
 ## WHAT TO BUILD NEXT (priority order)
 1. **Deploy:** Frontend on Vercel (`NEXT_PUBLIC_API_URL`), Backend on Railway/Render
-2. **Kaggle integration:** Wire real Gemma (not mock) in notebook, test end-to-end with sample notices
-3. **Image upload:** Gemma multimodal for notice images (currently OCR fallback)
+2. **State laws:** Delhi + Maharashtra + Karnataka coverage
+3. **Voice input:** STT on Next.js and Gradio
 4. **Writeup + screenshots** for submission
-5. **Polish:** Hindi UI labels, voice input (STT), offline toggle mockup
-6. **Tests:** Run 5 sample notices, document accuracy metrics for writeup
+5. **Polish:** Hindi UI labels, image multimodal via Gemma
 
 ## KEY FILES
 - Pipeline: `utils/pipeline.py`
@@ -73,12 +72,12 @@ npm run dev
 
 ## GEMMA INTEGRATION (30% of score — emphasize in writeup)
 1. **Call 1:** Extraction — notice → structured JSON
-2. **RAG:** TF-IDF over 55 curated clauses (anti-hallucination)
+2. **RAG:** TF-IDF over curated clauses (anti-hallucination)
 3. **Call 2:** Reasoning — rights, options, action steps + thinking trace
 4. **Call 3:** Draft generation — auto-filled legal letter
 
 ## ONE-LINE PITCH
-"Every other tool answers 'what does this mean?' Nyay Mitra answers 'what do I do now?' — and hands you the document to do it with."
+"Every other tool answers 'what does this mean?' Judisurely answers 'what do I do now?' — and hands you the document to do it with."
 
 ## INSTRUCTION FOR CURSOR
-Read the codebase at `/Users/harshitsengar/Desktop/GemmaTRACK1`. Continue from where we left off. Priority: get Kaggle demo working with real Gemma, deploy website, and help write the Kaggle submission writeup. Do not rebuild from scratch — extend existing code.
+Read the codebase at `/Users/harshitsengar/Desktop/GemmaTRACK1`. Continue from where we left off. Priority: deploy website, expand state law coverage, voice input, and help write the Kaggle submission writeup. Do not rebuild from scratch — extend existing code.

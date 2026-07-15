@@ -1,1 +1,1 @@
-"""Nyay Mitra — AI Legal Action Engine utilities."""
+"""Judisurely — AI Legal Action Engine utilities."""

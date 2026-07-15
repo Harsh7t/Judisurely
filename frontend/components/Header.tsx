@@ -19,7 +19,7 @@ export default function Header() {
             <Scale className="w-5 h-5 text-white" />
           </div>
           <div>
-            <h1 className="font-display text-xl font-bold text-legal-900">Nyay Mitra</h1>
+            <h1 className="font-display text-xl font-bold text-legal-900">Judisurely</h1>
             <p className="text-xs text-muted">AI Legal Action Engine</p>
           </div>
         </div>

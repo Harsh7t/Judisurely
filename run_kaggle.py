@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """
 Kaggle entry point — loads Gemma 4 + RAG + launches Gradio demo.
-Do NOT set NYAY_MITRA_DEV=1 on Kaggle.
+Do NOT set JUDISURELY_DEV=1 on Kaggle.
 """
 
 import os
 
 # Ensure real Gemma is used on Kaggle
-os.environ.pop("NYAY_MITRA_DEV", None)
+os.environ.pop("JUDISURELY_DEV", None)
+os.environ.pop("NYAY_MITRA_DEV", None)  # legacy
 
 
 def main():
@@ -21,7 +22,7 @@ def main():
     from utils.gradio_app import launch
 
     print("=" * 50)
-    print("Nyay Mitra — Kaggle Demo")
+    print("Judisurely — Kaggle Demo")
     print("=" * 50)
 
     path = find_model_path()

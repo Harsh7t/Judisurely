@@ -1,4 +1,4 @@
-"""Nyay Mitra pipeline: Gemma extraction → RAG → reasoning → draft."""
+"""Judisurely pipeline: Gemma extraction → RAG → reasoning → draft."""
 
 from __future__ import annotations
 
