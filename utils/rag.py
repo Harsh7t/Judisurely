@@ -9,8 +9,9 @@ from typing import List, Optional
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-_DATA_DIR = Path(__file__).resolve().parent.parent / "data"
-_KB_PATH = _DATA_DIR / "legal_kb.json"
+from utils.project_paths import DATA_DIR
+
+_KB_PATH = DATA_DIR / "legal_kb.json"
 
 _legal_kb: List[dict] = []
 _vectorizer: Optional[TfidfVectorizer] = None
